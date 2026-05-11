@@ -1,8 +1,8 @@
 # VIBE-CODING.md — Sổ Tay Vibe Coding cho Kỷ Nguyên Software 3.0
 
-> Tech tips cho lập trình viên trong kỷ nguyên agentic. Distill từ tư tưởng của **Andrej Karpathy** (Software 3.0, Vibe Coding), **Boris Cherny** (Claude Code, Anthropic), và **Cat Wu** (Head of Product, Claude Code).
+> Tech tips cho lập trình viên trong kỷ nguyên agentic. Đúc kết từ tư tưởng của **Andrej Karpathy** (Software 3.0, Vibe Coding), **Boris Cherny** (Claude Code, Anthropic), và **Cat Wu** (Head of Product, Claude Code).
 >
-> Mục tiêu: một tài liệu standalone, có thể đem áp dụng vào bất kỳ codebase nào — từ một file `.tex` Beamer cho tới một service Kubernetes ở production.
+> Mục tiêu: một tài liệu độc lập, có thể đem áp dụng vào bất kỳ codebase nào — từ một file `.tex` Beamer cho tới một service Kubernetes ở production.
 
 ---
 
@@ -279,7 +279,6 @@ AI không có cái này. Bạn có. Đừng để mất.
 | Boris Cherny — *Building Claude Code* (Anthropic, 2025) | 100% AI-generated code, 30–150 PR/ngày, printing press analogy |
 | Cat Wu — *Product Taste in the Agentic Era* (Anthropic, 2025) | Underfunding strategy, dissolving roles, taste as moat |
 | Anthropic — *Co-work* (product, 2025) | Agentic principles ngoài engineering — knowledge work tự động hoá |
-| [NotebookLM — Vibe Coding companion](https://notebooklm.google.com/notebook/55558a1b-4565-4622-9dfb-e05fe4b08f45) | Tổng hợp + audio overview của các nguồn ở trên — nghe trong lúc đi/chạy bộ |
 
 ---
 

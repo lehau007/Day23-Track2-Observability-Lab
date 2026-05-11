@@ -1,0 +1,3 @@
+This bonus made it clear that a single, narrow SLO is more useful than a pile of generic metrics. When tokens/sec collapses, users feel it immediately, and the queue depth tells you whether the system is simply overloaded or fully stalled. The most surprising part was how much signal you can get from just three metrics if you write the alert around a real failure mode.
+
+If I had another 8 hours, I would add GPU and memory telemetry to the Day 20 stack and correlate it with tokens/sec. That would let me distinguish model regressions from resource exhaustion and choose the right mitigation faster. I would also test a second failure mode (timeouts to the model server) and tune the burn-rate windows for faster detection without waking people up for brief spikes.

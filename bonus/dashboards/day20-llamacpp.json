@@ -1,0 +1,62 @@
+{
+  "title": "Day 20 — llama.cpp SLO Focus",
+  "uid": "bonus-day20-llamacpp",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "30s",
+  "time": {"from": "now-1h", "to": "now"},
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Tokens per Second",
+      "id": 1,
+      "gridPos": {"x": 0, "y": 0, "w": 12, "h": 6},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"expr": "day20_llamacpp_tokens_per_second", "refId": "A"}
+      ],
+      "fieldConfig": {
+        "defaults": {"unit": "ops", "noValue": "No Data (start monitor-day20...)"}
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Queue Depth",
+      "id": 2,
+      "gridPos": {"x": 12, "y": 0, "w": 12, "h": 6},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"expr": "day20_llamacpp_queue_depth", "refId": "A"}
+      ],
+      "fieldConfig": {
+        "defaults": {"unit": "short", "noValue": "No Data (start monitor-day20...)"}
+      }
+    },
+    {
+      "type": "timeseries",
+      "title": "Completions per Second",
+      "id": 3,
+      "gridPos": {"x": 0, "y": 6, "w": 12, "h": 6},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"expr": "rate(day20_llamacpp_completions_total[5m])", "refId": "A"}
+      ],
+      "fieldConfig": {
+        "defaults": {"unit": "ops", "noValue": "No Data (start monitor-day20...)"}
+      }
+    },
+    {
+      "type": "stat",
+      "title": "Bad TPS Fraction (5m)",
+      "id": 4,
+      "gridPos": {"x": 12, "y": 6, "w": 12, "h": 6},
+      "datasource": {"type": "prometheus", "uid": "prometheus"},
+      "targets": [
+        {"expr": "avg_over_time((day20_llamacpp_tokens_per_second < 12)[5m])", "refId": "A"}
+      ],
+      "fieldConfig": {
+        "defaults": {"unit": "percentunit", "noValue": "No Data"}
+      }
+    }
+  ]
+}

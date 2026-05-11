@@ -1,0 +1,50 @@
+## SLO: tokens/sec >= 12 for 99% of time (error budget 1%).
+## Burn rate = bad_fraction / 0.01.
+
+groups:
+  - name: day20-llamacpp-slo
+    interval: 30s
+    rules:
+      - record: day20:llamacpp:bad_tps_ratio:rate5m
+        expr: |
+          avg_over_time((day20_llamacpp_tokens_per_second < 12)[5m])
+
+      - record: day20:llamacpp:bad_tps_ratio:rate30m
+        expr: |
+          avg_over_time((day20_llamacpp_tokens_per_second < 12)[30m])
+
+      - record: day20:llamacpp:bad_tps_ratio:rate1h
+        expr: |
+          avg_over_time((day20_llamacpp_tokens_per_second < 12)[1h])
+
+      - record: day20:llamacpp:bad_tps_ratio:rate6h
+        expr: |
+          avg_over_time((day20_llamacpp_tokens_per_second < 12)[6h])
+
+      - alert: Day20LlamaCppSLOFastBurn
+        expr: |
+          day20:llamacpp:bad_tps_ratio:rate5m > (14.4 * 0.01)
+          and
+          day20:llamacpp:bad_tps_ratio:rate1h > (14.4 * 0.01)
+        for: 2m
+        labels:
+          severity: critical
+          service: day20-llamacpp
+        annotations:
+          summary: "Day 20 SLO fast burn: tokens/sec below target"
+          description: "5m and 1h bad-time fractions exceed 14.4x budget. Throughput collapse is likely."
+          runbook: "bonus/RUNBOOK.md"
+
+      - alert: Day20LlamaCppSLOSlowBurn
+        expr: |
+          day20:llamacpp:bad_tps_ratio:rate30m > (6 * 0.01)
+          and
+          day20:llamacpp:bad_tps_ratio:rate6h > (6 * 0.01)
+        for: 15m
+        labels:
+          severity: warning
+          service: day20-llamacpp
+        annotations:
+          summary: "Day 20 SLO slow burn: sustained low throughput"
+          description: "30m and 6h bad-time fractions exceed 6x budget. Investigate before it escalates."
+          runbook: "bonus/RUNBOOK.md"
